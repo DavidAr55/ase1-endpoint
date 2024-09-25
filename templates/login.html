@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASE1 Endpoint</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <h2 class="text-center">ASE1</h2>
+                <form id="loginForm">
+                    <div class="form-group mb-3">
+                        <label for="register">Registro</label>
+                        <input type="text" name="register" class="form-control" id="register" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="password">Contraseña</label>
+                        <input type="password" name="password" class="form-control" id="password" required>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary btn-block m-2" id="submitBtn">Iniciar sesión</button>
+                        <div id="loader" class="spinner-border text-primary m-2" role="status">
+                            <span class="visually-hidden">Cargando...</span>
+                        </div>
+                    </div>
+                </form>
+                <pre id="responseOutput"></pre>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

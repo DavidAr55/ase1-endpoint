@@ -1,0 +1,20 @@
+#loader {
+    display: none;
+    text-align: center;
+    margin-top: 10px;
+}
+#responseOutput {
+    display: none;
+    background-color: #2e2e42;
+    border: 1px solid #4b4b5b;
+    border-radius: 0.25rem;
+    padding: 10px;
+    white-space: pre-wrap;
+    font-family: monospace;
+    overflow-x: auto;
+    margin-top: 10px;
+    color: #c3e88d;
+}
+.key {
+    color: #70ddff;
+}
