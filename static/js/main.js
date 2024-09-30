@@ -14,16 +14,44 @@ document.addEventListener("DOMContentLoaded", function() {
     const submitBtn = document.getElementById("submitBtn");
     const loader = document.getElementById("loader");
     const responseOutput = document.getElementById("responseOutput");
+    
+    const registerInput = document.getElementById("register");
+    const passwordInput = document.getElementById("password");
+
+    // Oculta el loader inicialmente
+    loader.style.display = "none";
 
     form.addEventListener("submit", function(event) {
-        event.preventDefault(); // Evita que el formulario se envíe de forma normal
+        event.preventDefault(); // Evita el envío tradicional del formulario
 
+        // Limpia los mensajes de error previos
+        clearErrors();
+
+        let hasErrors = false;
+
+        // Verifica si los inputs están vacíos
+        if (registerInput.value.trim() === "") {
+            displayError(registerInput, "El campo de Registro no puede estar vacío.");
+            hasErrors = true;
+        }
+
+        if (passwordInput.value.trim() === "") {
+            displayError(passwordInput, "El campo de Contraseña no puede estar vacío.");
+            hasErrors = true;
+        }
+
+        // Si hay errores, no continuar
+        if (hasErrors) {
+            return;
+        }
+
+        // Si el formulario es válido, procede con el envío
         const formData = {
-            register: form.register.value,
-            password: form.password.value
+            register: registerInput.value,
+            password: passwordInput.value
         };
 
-        // Deshabilitar el botón y mostrar el loader
+        // Deshabilita el botón y muestra el loader
         submitBtn.disabled = true;
         loader.style.display = "block";
 
@@ -54,4 +82,22 @@ document.addEventListener("DOMContentLoaded", function() {
             loader.style.display = "none";
         });
     });
+
+    // Función para mostrar errores
+    function displayError(inputElement, message) {
+        const error = document.createElement("div");
+        error.className = "error-message"; // Clase para estilizar el error
+        error.textContent = message;
+        inputElement.parentElement.appendChild(error); // Añadir el error al contenedor padre
+        inputElement.classList.add("input-error"); // Añadir clase para resaltar el input
+    }
+
+    // Función para limpiar mensajes de error
+    function clearErrors() {
+        const errors = document.querySelectorAll(".error-message");
+        errors.forEach(error => error.remove()); // Remueve todos los mensajes de error
+
+        const errorInputs = document.querySelectorAll(".input-error");
+        errorInputs.forEach(input => input.classList.remove("input-error")); // Remueve clases de error en inputs
+    }
 });
